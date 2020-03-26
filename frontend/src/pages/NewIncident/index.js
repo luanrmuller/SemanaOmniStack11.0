@@ -31,7 +31,7 @@ export default function NewIncident() {
         }
       });
 
-      history.push("/");
+      history.push("/profile");
     } catch (error) {
       console.log(error);
       alert("Erro no cadastro, tente novamente.");
@@ -57,19 +57,19 @@ export default function NewIncident() {
 
         <form onSubmit={handleNewIncident}>
           <input
-            placeholder="Titulo do caso "
+            placeholder="Titulo do caso"
             value={title}
-            onchange={e => setTitle(e.target.value)}
+            onChange={e => setTitle(e.target.value)}
           />
-          <textArea
+          <textarea
             placeholder="Descricao"
             value={description}
-            onchange={e => setDescription(e.target.value)}
+            onChange={e => setDescription(e.target.value)}
           />
           <input
             placeholder="Valor em reais"
             value={value}
-            onchange={e => setValue(e.target.value)}
+            onChange={e => setValue(e.target.value)}
           />
 
           <button className="button" type="submit ">
