@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { FiPower } from "react-icons/fi";
-import { FiTrash2 } from "react-icons/fi";
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { FiPower } from 'react-icons/fi';
+import { FiTrash2 } from 'react-icons/fi';
 
-import logoImg from "../../assets/logo.svg";
+import logoImg from '../../assets/logo.svg';
 
-import api from "../../services/api";
-import "./styles.css";
+import api from '../../services/api';
+import './styles.css';
 
 export default function Profile() {
   const history = useHistory();
   const [incidents, setIncidents] = useState([]);
 
-  const ongId = localStorage.getItem("ongId");
-  const ongName = localStorage.getItem("ongName");
+  const ongId = localStorage.getItem('ongId');
+  const ongName = localStorage.getItem('ongName');
 
   useEffect(() => {
     api
-      .get("profile", {
+      .get('profile', {
         headers: {
           Authorization: ongId
         }
@@ -37,27 +37,27 @@ export default function Profile() {
 
       setIncidents(incidents.filter(incident => incident.id !== id));
     } catch (error) {
-      alert("Erro ao deletar caso, tente novamente.");
+      alert('Erro ao deletar caso, tente novamente.');
     }
   }
 
   function handleLogout() {
     localStorage.clear();
 
-    history.push("/");
+    history.push('/');
   }
 
   return (
-    <div className="profile-container">
+    <div className='profile-container'>
       <header>
-        <img src={logoImg} alt="Be The Hero" />
+        <img src={logoImg} alt='Be The Hero' />
         <span>Bem vindo(a) {ongName}</span>
 
-        <Link className="button" to="/incidents/new">
+        <Link className='button' to='/incidents/new'>
           Cadastrar novo caso
         </Link>
-        <button onClick={handleLogout} type="button">
-          <FiPower size={18} color="#E02041" />
+        <button onClick={handleLogout} type='button'>
+          <FiPower size={18} color='#E02041' />
         </button>
       </header>
 
@@ -74,17 +74,17 @@ export default function Profile() {
 
             <strong>VALOR</strong>
             <p>
-              {Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRL"
+              {Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
               }).format(incident.value)}
             </p>
 
             <button
               onClick={() => handleDeleteIncident(incident.id)}
-              type="button"
+              type='button'
             >
-              <FiTrash2 size={20} color="#a8a8b3" />
+              <FiTrash2 size={20} color='#a8a8b3' />
             </button>
           </li>
         ))}
